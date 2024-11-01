@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>確認クイズへ</title>
+</head>
+<body>
+    <button id="redirectButton">確認クイズへ</button>
+
+    <script>
+        document.getElementById('redirectButton').addEventListener('click', function() {
+            // URLからcompletion_tokenを取得
+            const params = new URLSearchParams(window.location.search);
+            const completion_token = params.get('completion_token');
+
+            if (completion_token) {
+                // リダイレクト先のURLを生成
+                const baseURL = 'https://research.sc/participant/login/resume/';
+                const redirectURL = baseURL + completion_token;
+                // リダイレクト
+                window.location.href = redirectURL;
+            } else {
+                alert('completion_tokenが見つかりません。');
+            }
+        });
+    </script>
+</body>
+</html>
